@@ -22,8 +22,9 @@ class Experiment:
     def run_experiment(self, feature_map, ansatz_funcs, max_reps = 1, verbose=False):
         for i in range(len(ansatz_funcs)):
             for reps in range(1, max_reps + 1):
-                with open("./results/validation_results.json", "r") as f:
-                    self.validation_results = json.load(f)
+                if os.path.exists("./results/validation_results.json"):
+                    with open("./results/validation_results.json", "r") as f:
+                        self.validation_results = json.load(f)
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps for res in self.validation_results]):
                     continue
                 vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
