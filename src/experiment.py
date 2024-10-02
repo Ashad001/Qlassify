@@ -1,12 +1,12 @@
 
 import os
 import json
+import time
 import numpy as np
 import matplotlib.pyplot as plt
 from src.VQC_ import VariationalQuantumClassifier
 
 os.makedirs("results", exist_ok=True)
-
 class Experiment:
     def __init__(self, X_train, y_train, X_val, y_val, X_test, y_test, num_qubits):
         self.X_train = X_train
@@ -27,6 +27,7 @@ class Experiment:
                         self.validation_results = json.load(f)
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps for res in self.validation_results]):
                     continue
+                start = time.time()
                 vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
                 vqc.train(self.X_train, self.y_train, reps=reps, verbose=verbose)
 
@@ -38,11 +39,12 @@ class Experiment:
                     "precision": precision,
                     "recall": recall,
                     "f1": f1,
-                    "model": vqc.model
+                    "model": vqc.model,
+                    "time": round(time.time() - start, 3)
                 })
                 print(f"[+] Validation results for {ansatz_funcs[i].__name__} with {reps} repetitions:")
                 print(f"[+] Accuracy: {accuracy}")
-                # Why save here you ask???? Well you want me to run the experiment again??
+                # INEFFICIENT!!! Why save here????, you ask. Well you want me to run the experiment again??
                 with open("./results/validation_results.json", "w") as f:
                     json.dump(self.validation_results, f)
             
