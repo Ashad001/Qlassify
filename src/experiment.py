@@ -25,7 +25,7 @@ class Experiment:
                 if os.path.exists("./results/validation_results.json"):
                     with open("./results/validation_results.json", "r") as f:
                         self.validation_results = json.load(f)
-                if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map[i].__name__ for res in self.validation_results]):
+                if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map._base_name for res in self.validation_results]):
                     continue
                 start = time.time()
                 vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
@@ -34,7 +34,7 @@ class Experiment:
                 accuracy, precision, recall, f1 = vqc.evaluate(self.X_val, self.y_val)
                 self.validation_results.append({
                     "ansatz": ansatz_funcs[i].__name__,
-                    "feature_map": feature_map.__name__,
+                    "feature_map": feature_map._base_name,
                     "reps": reps,
                     "accuracy": round(accuracy, 3),
                     "precision": round(precision, 3),
