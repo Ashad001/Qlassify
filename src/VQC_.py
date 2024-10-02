@@ -1,13 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from qiskit import QuantumCircuit
-from qiskit.circuit import ParameterVector
 from qiskit_machine_learning.algorithms import VQC
-from qiskit.circuit.library import ZZFeatureMap, PauliFeatureMap
 from qiskit_algorithms.optimizers import COBYLA
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-from src.ansatz import ansatz_1, ansatz_2, ansatz_3, ansatz_4
 from src.callbacks import callback_graph    
 
 class VariationalQuantumClassifier:

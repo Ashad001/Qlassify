@@ -25,7 +25,7 @@ class Experiment:
                 if os.path.exists("./results/validation_results.json"):
                     with open("./results/validation_results.json", "r") as f:
                         self.validation_results = json.load(f)
-                if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps for res in self.validation_results]):
+                if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map[i].__name__ for res in self.validation_results]):
                     continue
                 start = time.time()
                 vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
@@ -34,25 +34,26 @@ class Experiment:
                 accuracy, precision, recall, f1 = vqc.evaluate(self.X_val, self.y_val)
                 self.validation_results.append({
                     "ansatz": ansatz_funcs[i].__name__,
+                    "feature_map": feature_map.__name__,
                     "reps": reps,
-                    "accuracy": accuracy,
-                    "precision": precision,
-                    "recall": recall,
-                    "f1": f1,
-                    "model": vqc.model,
+                    "accuracy": round(accuracy, 3),
+                    "precision": round(precision, 3),
+                    "recall": round(recall, 3),
+                    "f1": round(f1,3),
                     "time": round(time.time() - start, 3)
                 })
                 print(f"[+] Validation results for {ansatz_funcs[i].__name__} with {reps} repetitions:")
                 print(f"[+] Accuracy: {accuracy}")
                 # INEFFICIENT!!! Why save here????, you ask. Well you want me to run the experiment again??
                 with open("./results/validation_results.json", "w") as f:
-                    json.dump(self.validation_results, f)
+                    json.dump(self.validation_results, f, indent=4, default=str)
             
     def evaluate_best_on_test(self):
         best_model = max(self.validation_results, key=lambda x: x["accuracy"])["model"]
         accuracy, precision, recall, f1 = best_model.evaluate(self.X_test, self.y_test)
         self.train_results = {
             "ansatz": best_model['ansatz'],
+            "feature_map": best_model['feature_map'],
             "accuracy": accuracy,
             "precision": precision,
             "recall": recall,
