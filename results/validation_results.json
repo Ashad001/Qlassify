@@ -8,5 +8,115 @@
         "recall": 0.545,
         "f1": 0.571,
         "time": 751.324
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.6,
+        "precision": 0.615,
+        "recall": 0.727,
+        "f1": 0.667,
+        "time": 644.638
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.4,
+        "precision": 0.455,
+        "recall": 0.455,
+        "f1": 0.455,
+        "time": 1089.857
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.4,
+        "precision": 0.462,
+        "recall": 0.545,
+        "f1": 0.5,
+        "time": 695.381
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.65,
+        "precision": 0.667,
+        "recall": 0.727,
+        "f1": 0.696,
+        "time": 1908.558
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.35,
+        "precision": 0.4,
+        "recall": 0.364,
+        "f1": 0.381,
+        "time": 694.737
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.6,
+        "precision": 0.636,
+        "recall": 0.636,
+        "f1": 0.636,
+        "time": 661.395
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.5,
+        "precision": 0.571,
+        "recall": 0.364,
+        "f1": 0.444,
+        "time": 790.374
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.65,
+        "precision": 0.833,
+        "recall": 0.455,
+        "f1": 0.588,
+        "time": 735.14
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.4,
+        "precision": 0.444,
+        "recall": 0.364,
+        "f1": 0.4,
+        "time": 812.971
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.45,
+        "precision": 0.5,
+        "recall": 0.364,
+        "f1": 0.421,
+        "time": 772.616
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.35,
+        "precision": 0.4,
+        "recall": 0.364,
+        "f1": 0.381,
+        "time": 1731.916
     }
 ]
