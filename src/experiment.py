@@ -20,23 +20,24 @@ class Experiment:
         self.train_results = {}
         
     def run_experiment(self, feature_map, ansatz_funcs, max_reps = 1, verbose=False):
+        self.feature_map = feature_map
         for i in range(len(ansatz_funcs)):
             for reps in range(1, max_reps + 1):
                 if os.path.exists("./results/validation_results.json"):
                     with open("./results/validation_results.json", "r") as f:
                         self.validation_results = json.load(f)
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map._base_name for res in self.validation_results]):
-                    print("[+] Skipping training for", ansatz_funcs[i].__name__, "with", reps, "repetitions")
+                    print("[+] Skipping training for", self.feature_map._base_name, ansatz_funcs[i].__name__, "with", reps, "repetitions")
                     continue
                 print("[+] Training", ansatz_funcs[i].__name__, "with", reps, "repetitions")
                 start = time.time()
-                vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
+                vqc = VariationalQuantumClassifier(self.feature_map, self.num_qubits, ansatz_funcs[i])
                 vqc.train(self.X_train, self.y_train, reps=reps, verbose=verbose)
 
                 accuracy, precision, recall, f1 = vqc.evaluate(self.X_val, self.y_val)
                 self.validation_results.append({
                     "ansatz": ansatz_funcs[i].__name__,
-                    "feature_map": feature_map._base_name,
+                    "feature_map": self.feature_map._base_name,
                     "reps": reps,
                     "accuracy": round(accuracy, 3),
                     "precision": round(precision, 3),
@@ -61,7 +62,7 @@ class Experiment:
             "recall": recall,
             "f1": f1
         }
-        with open("./results/train_results.json", "w") as f:
+        with open(f"./results/train_results_{self.feature_map._base_name}.json", "w") as f:
             json.dump(self.train_results, f)
             
     def plot_results(self):
@@ -85,5 +86,5 @@ class Experiment:
         plt.legend()
         
         plt.tight_layout()
-        plt.savefig("./results/validation_results.png")
+        plt.savefig(f"./results/validation_results_{self.feature_map._base_name}.png")
         plt.show()
