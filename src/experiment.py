@@ -26,7 +26,9 @@ class Experiment:
                     with open("./results/validation_results.json", "r") as f:
                         self.validation_results = json.load(f)
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map._base_name for res in self.validation_results]):
+                    print("[+] Skipping training for", ansatz_funcs[i].__name__, "with", reps, "repetitions")
                     continue
+                print("[+] Training", ansatz_funcs[i].__name__, "with", reps, "repetitions")
                 start = time.time()
                 vqc = VariationalQuantumClassifier(feature_map, self.num_qubits, ansatz_funcs[i])
                 vqc.train(self.X_train, self.y_train, reps=reps, verbose=verbose)
