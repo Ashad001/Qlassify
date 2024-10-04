@@ -118,5 +118,125 @@
         "recall": 0.364,
         "f1": 0.381,
         "time": 1731.916
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "PauliFeatureMap",
+        "reps": 1,
+        "accuracy": 0.4,
+        "precision": 0.5,
+        "recall": 0.417,
+        "f1": 0.455,
+        "time": 1340.671
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "PauliFeatureMap",
+        "reps": 2,
+        "accuracy": 0.4,
+        "precision": 0.5,
+        "recall": 0.333,
+        "f1": 0.4,
+        "time": 1138.721
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "PauliFeatureMap",
+        "reps": 3,
+        "accuracy": 0.2,
+        "precision": 0.333,
+        "recall": 0.333,
+        "f1": 0.333,
+        "time": 1017.998
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "PauliFeatureMap",
+        "reps": 1,
+        "accuracy": 0.6,
+        "precision": 0.7,
+        "recall": 0.583,
+        "f1": 0.636,
+        "time": 900.455
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "PauliFeatureMap",
+        "reps": 2,
+        "accuracy": 0.55,
+        "precision": 0.615,
+        "recall": 0.667,
+        "f1": 0.64,
+        "time": 821.701
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "PauliFeatureMap",
+        "reps": 3,
+        "accuracy": 0.7,
+        "precision": 0.875,
+        "recall": 0.583,
+        "f1": 0.7,
+        "time": 1573.767
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "PauliFeatureMap",
+        "reps": 1,
+        "accuracy": 0.55,
+        "precision": 0.667,
+        "recall": 0.5,
+        "f1": 0.571,
+        "time": 836.688
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "PauliFeatureMap",
+        "reps": 2,
+        "accuracy": 0.55,
+        "precision": 0.667,
+        "recall": 0.5,
+        "f1": 0.571,
+        "time": 864.303
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "PauliFeatureMap",
+        "reps": 3,
+        "accuracy": 0.3,
+        "precision": 0.429,
+        "recall": 0.5,
+        "f1": 0.462,
+        "time": 1007.835
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "PauliFeatureMap",
+        "reps": 1,
+        "accuracy": 0.6,
+        "precision": 0.7,
+        "recall": 0.583,
+        "f1": 0.636,
+        "time": 1128.006
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "PauliFeatureMap",
+        "reps": 2,
+        "accuracy": 0.4,
+        "precision": 0.5,
+        "recall": 0.333,
+        "f1": 0.4,
+        "time": 1144.094
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "PauliFeatureMap",
+        "reps": 3,
+        "accuracy": 0.7,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "time": 1089.752
     }
 ]

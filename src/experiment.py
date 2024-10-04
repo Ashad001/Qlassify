@@ -22,7 +22,6 @@ class Experiment:
     def split_data(self, X, y, use_sample: bool = True, train_size=0.7, val_size=0.2, test_size=0.1, verbose=False):
         """Splits the data into training, validation, and test sets. Allows training on a sample if use_sample is True."""
         self._X, self._y = X, y
-        print(self._X.shape, self._y.shape)
         
         if use_sample:
             self.X = copy.deepcopy(self._X[:self.sample_size])
@@ -125,7 +124,7 @@ class Experiment:
         }
         
         with open(f"./results/train_results_{self.feature_map._base_name}.json", "w") as f:
-            json.dump(self.train_results, f)
+            json.dump(self.train_results, f, indent=4)
             
     def plot_results(self):
         """Plots the validation results."""

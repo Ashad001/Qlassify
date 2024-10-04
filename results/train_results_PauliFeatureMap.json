@@ -1,0 +1,8 @@
+{
+    "ansatz": "ansatz_2",
+    "feature_map": "PauliFeatureMap",
+    "accuracy": 0.5357142857142857,
+    "precision": 0.6,
+    "recall": 0.5625,
+    "f1": 0.5806451612903225
+}
