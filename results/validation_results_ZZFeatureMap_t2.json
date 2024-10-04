@@ -1,0 +1,122 @@
+[
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.65,
+        "precision": 0.615,
+        "recall": 0.8,
+        "f1": 0.696,
+        "time": 2525.103
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.65,
+        "precision": 0.636,
+        "recall": 0.7,
+        "f1": 0.667,
+        "time": 308.402
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 0.9,
+        "f1": 0.643,
+        "time": 349.538
+    },
+    {
+        "ansatz": "ansatz_2",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.55,
+        "precision": 0.529,
+        "recall": 0.9,
+        "f1": 0.667,
+        "time": 285.253
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.65,
+        "precision": 0.636,
+        "recall": 0.7,
+        "f1": 0.667,
+        "time": 362.068
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.75,
+        "precision": 0.727,
+        "recall": 0.8,
+        "f1": 0.762,
+        "time": 345.186
+    },
+    {
+        "ansatz": "ansatz_3",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.6,
+        "precision": 0.571,
+        "recall": 0.8,
+        "f1": 0.667,
+        "time": 337.39
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 1,
+        "accuracy": 0.55,
+        "precision": 0.556,
+        "recall": 0.5,
+        "f1": 0.526,
+        "time": 352.475
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.75,
+        "precision": 0.727,
+        "recall": 0.8,
+        "f1": 0.762,
+        "time": 352.091
+    },
+    {
+        "ansatz": "ansatz_4",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.45,
+        "precision": 0.4,
+        "recall": 0.2,
+        "f1": 0.267,
+        "time": 370.13
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "ZZFeatureMap",
+        "reps": 2,
+        "accuracy": 0.7,
+        "precision": 0.643,
+        "recall": 0.9,
+        "f1": 0.75,
+        "time": 368.01
+    },
+    {
+        "ansatz": "ansatz_1",
+        "feature_map": "ZZFeatureMap",
+        "reps": 3,
+        "accuracy": 0.75,
+        "precision": 0.692,
+        "recall": 0.9,
+        "f1": 0.783,
+        "time": 355.667
+    }
+]

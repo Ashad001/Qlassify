@@ -149,5 +149,5 @@ class Experiment:
         plt.legend()
         
         plt.tight_layout()
-        plt.savefig(f"./results/validation_results_{self.feature_map._base_name}.png")
+        plt.savefig(f"./results/validation_results_{self.feature_map._base_name}_2.png")
         plt.show()

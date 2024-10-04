@@ -27,7 +27,7 @@ class VariationalQuantumClassifier:
             self.vqc =  self.model = VQC(
                 feature_map=self.feature_map, 
                 ansatz=ansantz, 
-                optimizer=self.optimizer,
+                optimizer=self.optimizer
             )
     def train(self, X_train, y_train, reps = 1, verbose = False):
         if self.model is None:
