@@ -68,8 +68,8 @@ class Experiment:
         self.asnatx_funcs = ansatz_funcs
         for i in range(len(ansatz_funcs)):
             for reps in range(1, max_reps + 1):
-                if os.path.exists("./results/validation_results.json"):
-                    with open("./results/validation_results.json", "r") as f:
+                if os.path.exists(f"./results/validation_results_{self.feature_map._base_name}_t2.json"):
+                    with open(f"./results/validation_results_{self.feature_map._base_name}_t2.json", "r") as f:
                         self.validation_results = json.load(f)
                 
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map._base_name for res in self.validation_results]):
@@ -96,7 +96,7 @@ class Experiment:
                 print(f"[+] Validation results for {ansatz_funcs[i].__name__} with {reps} repetitions:")
                 print(f"[+] Accuracy: {accuracy}")
                 
-                with open("./results/validation_results.json", "w") as f:
+                with open(f"./results/validation_results_{self.feature_map._base_name}_t2.json", "w") as f:
                     json.dump(self.validation_results, f, indent=4, default=str)
             
     def evaluate_best_on_test(self, use_full_data=False):
@@ -117,6 +117,7 @@ class Experiment:
         self.train_results = {
             "ansatz": best_model['ansatz'],
             "feature_map": best_model['feature_map'],
+            "reps": best_model['reps'],
             "accuracy": accuracy,
             "precision": precision,
             "recall": recall,
