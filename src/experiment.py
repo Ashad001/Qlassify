@@ -5,18 +5,22 @@ import copy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from typing import Optional
 from src.VQC_ import VariationalQuantumClassifier
 from sklearn.model_selection import StratifiedShuffleSplit
 
 from src.ansatz import *
 
-os.makedirs("results", exist_ok=True)
+LOG_DIR = "results_2"
+
+os.makedirs(LOG_DIR, exist_ok=True)
 
 class Experiment:
-    def __init__(self, num_qubits, sample_size=100):
+    def __init__(self, num_qubits, sample_size=100, experiment_name: Optional[str] = None):
         self.sample_size = sample_size
         self.num_qubits = num_qubits
         self.validation_results = []
+        self.experiment_name = experiment_name
         self.train_results = {}
 
     def split_data(self, X, y, use_sample: bool = True, train_size=0.7, val_size=0.2, test_size=0.1, verbose=False):
@@ -68,12 +72,12 @@ class Experiment:
         self.asnatx_funcs = ansatz_funcs
         for i in range(len(ansatz_funcs)):
             for reps in range(1, max_reps + 1):
-                if os.path.exists(f"./results/validation_results_{self.feature_map._base_name}_t2.json"):
-                    with open(f"./results/validation_results_{self.feature_map._base_name}_t2.json", "r") as f:
+                if os.path.exists(f"./{LOG_DIR}/validation_results_{self.feature_map._base_name}_{self.experiment_name}.json"):
+                    with open(f"./{LOG_DIR}/validation_results_{self.feature_map._base_name}_{self.experiment_name}.json", "r") as f:
                         self.validation_results = json.load(f)
                 
                 if any([res['ansatz'] == ansatz_funcs[i].__name__ and res['reps'] == reps and res['feature_map'] == feature_map._base_name for res in self.validation_results]):
-                    print(f"     [>] Skipping training for {self.feature_map._base_name}, {ansatz_funcs[i].__name__} with {reps} repetitions")
+                    print(f"   [>] Skipping training for {self.feature_map._base_name}, {ansatz_funcs[i].__name__} with {reps} repetitions")
                     continue
                 
                 print(f"[+] Training {ansatz_funcs[i].__name__} with {reps} repetitions")
@@ -94,9 +98,9 @@ class Experiment:
                     "time": round(time.time() - start, 3)
                 })
                 print(f"[+] Validation results for {ansatz_funcs[i].__name__} with {reps} repetitions:")
-                print(f"[+] Accuracy: {accuracy}")
+                print(f"   [>] Accuracy: {accuracy}")
                 
-                with open(f"./results/validation_results_{self.feature_map._base_name}_t2.json", "w") as f:
+                with open(f"./{LOG_DIR}/validation_results_{self.feature_map._base_name}_{self.experiment_name}.json", "w") as f:
                     json.dump(self.validation_results, f, indent=4, default=str)
             
     def evaluate_best_on_test(self, use_full_data=False):
@@ -110,22 +114,26 @@ class Experiment:
             if asnatx.__name__ == best_model["ansatz"]:
                 best_asnatz = asnatx
                 break
+        
+        start = time.time()
         vqc = VariationalQuantumClassifier(self.feature_map, self.num_qubits, best_asnatz)
-        vqc.train(self.X_train, self.y_train)
+        vqc.train(self.X_train, self.y_train, reps=best_model["reps"])
         
         accuracy, precision, recall, f1 = vqc.evaluate(self.X_test, self.y_test)
-        self.train_results = {
+        self.test_results = {
             "ansatz": best_model['ansatz'],
             "feature_map": best_model['feature_map'],
             "reps": best_model['reps'],
-            "accuracy": accuracy,
-            "precision": precision,
-            "recall": recall,
-            "f1": f1
+            "accuracy": round(accuracy, 3),
+            "precision": round(precision, 3),
+            "recall": round(recall,3),
+            "f1": round(f1, 3),
+            "time": round(time.time() - start, 3)
         }
         
-        with open(f"./results/train_results_{self.feature_map._base_name}.json", "w") as f:
+        with open(f"./{LOG_DIR}/test_results_{self.feature_map._base_name}_{self.experiment_name}.json", "w") as f:
             json.dump(self.train_results, f, indent=4)
+        return self.test_results
             
     def plot_results(self):
         """Plots the validation results."""
@@ -149,5 +157,5 @@ class Experiment:
         plt.legend()
         
         plt.tight_layout()
-        plt.savefig(f"./results/validation_results_{self.feature_map._base_name}_2.png")
+        plt.savefig(f"./{LOG_DIR}/validation_results_{self.feature_map._base_name}_{self.experiment_name}.png")
         plt.show()
