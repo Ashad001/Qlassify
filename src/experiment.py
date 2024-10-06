@@ -132,7 +132,7 @@ class Experiment:
         }
         
         with open(f"./{LOG_DIR}/test_results_{self.feature_map._base_name}_{self.experiment_name}.json", "w") as f:
-            json.dump(self.train_results, f, indent=4)
+            json.dump(self.test_results, f, indent=4)
         return self.test_results
             
     def plot_results(self):
