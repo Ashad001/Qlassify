@@ -13,8 +13,8 @@
 
 ## **Project Structure**
 1. **Data**: The project uses two datasets:
-   - **Statlog Heart** dataset (8 qubits)
-   - **Ionosphere** dataset (12 qubits)
+   - **Statlog Heart** dataset (8 qubits/features)
+   - **Ionosphere** dataset (8 qubits/features)
    
    Features were selected based on correlation with the target class, ensuring that the number of qubits stays manageable.
 
